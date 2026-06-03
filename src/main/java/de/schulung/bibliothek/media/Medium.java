@@ -6,12 +6,12 @@ public abstract class Medium {
     protected final int id;
     protected final String title;
     protected final Language language;
-    protected final String year;
+    protected final int year;
 
 
     protected boolean isAvailable;
 
-    public Medium(int id, String title, Language language, String year) {
+    public Medium(int id, String title, Language language, int year) {
         this.id = id;
         this.title = title;
         this.language = language;
@@ -39,7 +39,7 @@ public abstract class Medium {
         isAvailable = available;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 }

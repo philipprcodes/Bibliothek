@@ -1,30 +1,27 @@
 package de.schulung.bibliothek;
 
 import de.schulung.bibliothek.administration.Bibliothek;
-import de.schulung.bibliothek.enums.Language;
 import de.schulung.bibliothek.media.Book;
-import net.datafaker.Faker;
+import de.schulung.bibliothek.media.Medium;
+import de.schulung.bibliothek.utilities.MediumGenerator;
+
 
 public class BibliothekMain {
     public static void main(String[] args) {
         Bibliothek bibliothek = new Bibliothek();
 
-
-        Faker faker = new Faker();
-
-        String title = faker.book().title();
-        String author = faker.book().author();
-
-
-
-
-        Book book = new Book(1,faker.book().title(), Language.GERMAN, "2026", "999", faker.book().author(), 100);
+        Medium book = MediumGenerator.generateBook(bibliothek.getNextId());
+        Medium book2 = MediumGenerator.generateBook(bibliothek.getNextId());
+        Medium book3 = MediumGenerator.generateBook(bibliothek.getNextId());
 
         bibliothek.addToStock(book);
 
-        System.out.println(book);
+        bibliothek.addToStock(book2);
+
+        bibliothek.addToStock(book3);
 
 
+        bibliothek.printStock();
 
     }
 }

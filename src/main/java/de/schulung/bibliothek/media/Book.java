@@ -7,7 +7,7 @@ public class Book extends Medium {
     private final String author;
     private final int pages;
 
-    public Book(int id, String title, Language language, String year, String isbn, String author, int pages) {
+    public Book(int id, String title, Language language, int year, String isbn, String author, int pages) {
         super(id, title, language, year);
         this.isbn = isbn;
         this.author = author;
