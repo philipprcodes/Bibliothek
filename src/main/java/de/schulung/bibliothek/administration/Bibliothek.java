@@ -1,7 +1,5 @@
 package de.schulung.bibliothek.administration;
 
-import de.schulung.bibliothek.media.Book;
-import de.schulung.bibliothek.media.DVD;
 import de.schulung.bibliothek.media.Medium;
 
 import java.util.ArrayList;
@@ -10,10 +8,15 @@ import java.util.List;
 public class Bibliothek {
 
     private final List<Medium> mediums = new ArrayList<>();
+    private int currentMaxId     = 0;
+
+    public Bibliothek() {}
 
     public boolean addToStock(Medium medium) {
        if (!mediums.contains(medium)) {
            mediums.add(medium);
+
+           this.currentMaxId = Math.max(this.currentMaxId, medium.getId());
            return true;
        }
        return false;
@@ -24,4 +27,16 @@ public class Bibliothek {
     }
 
 
+    public int getNextId() {
+        currentMaxId++;
+        return currentMaxId;
+    }
+
+    public void printStock() {
+        for (Medium medium : mediums) {
+
+
+            System.out.println(medium);
+        }
+    }
 }
