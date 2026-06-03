@@ -5,14 +5,14 @@ import de.schulung.bibliothek.enums.Language;
 public class DVD extends Medium {
 
     private final String director;
-    private final String length;
+    private final int length;
 
-    public DVD(int id, String title, Language language, int year, String director, String length) {
+    public DVD(int id, String title, Language language, int year, String director, int length) {
         super(id, title, language, year);
         this.director = director;
         this.length = length;
     }
-    public String getLength() {
+    public int getLength() {
             return length;
         }
 

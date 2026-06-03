@@ -13,12 +13,16 @@ public class BibliothekMain {
         Medium book = MediumGenerator.generateBook(bibliothek.getNextId());
         Medium book2 = MediumGenerator.generateBook(bibliothek.getNextId());
         Medium book3 = MediumGenerator.generateBook(bibliothek.getNextId());
+        Medium dvd = MediumGenerator.generateDVD(bibliothek.getNextId());
+        Medium dvd2 = MediumGenerator.generateDVD(bibliothek.getNextId());
+        Medium dvd3 = MediumGenerator.generateDVD(bibliothek.getNextId());
 
         bibliothek.addToStock(book);
-
         bibliothek.addToStock(book2);
-
         bibliothek.addToStock(book3);
+        bibliothek.addToStock(dvd);
+        bibliothek.addToStock(dvd2);
+        bibliothek.addToStock(dvd3);
 
 
         bibliothek.printStock();
