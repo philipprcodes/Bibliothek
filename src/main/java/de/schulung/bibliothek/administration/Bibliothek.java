@@ -2,15 +2,14 @@ package de.schulung.bibliothek.administration;
 
 import de.schulung.bibliothek.media.Medium;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Bibliothek {
 
-    private final List<Medium> mediums = new ArrayList<>();
+    private final Set<Medium> mediums = new HashSet<>();
     private final Set<Member> members = new HashSet<>();
+    private final Map<Member, List<Lending>> lendings = new HashMap<>();
     private int currentMaxId     = 0;
     private int currentMaxMemberId = 0;
 
@@ -65,4 +64,38 @@ public class Bibliothek {
             System.out.println(member);
         }
     }
+
+    public void printLendings() {
+        for (Member i : lendings.keySet()){
+            System.out.println(i + " " + lendings.get(i));
+        }
+    }
+
+    public boolean lendMedium (Member member, Medium medium, LocalDate lendingDate) {
+
+        if (members.contains(member) && mediums.contains(medium) && medium.isAvailable()) {
+            if (!lendings.containsKey(member)) {
+                lendings.put(member, new ArrayList<>());
+            }
+
+            Lending lending = new Lending(lendingDate, medium);
+            lendings.get(member).add(lending);
+            medium.setAvailable(false);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean returnMedium(Medium medium) {
+        Member member = lendings.entrySet().stream().filter(entry -> Objects.equals(entry.getKey(), medium)).map(Map.Entry::getKey).findFirst().orElse(null);
+        if (member != null) {
+            lendings.remove(member);
+            return true;
+        }
+        return false;
+
+    }
+
+
+
 }
