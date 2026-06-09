@@ -34,6 +34,8 @@ public class BibliothekMain {
 
 //        bibliothek.printStock();
 
+        Member admin = new Member( "CBM", "Dieter", "Mueller", LocalDate.of(1990, 5, 23), "admin@cbm.de");
+        bibliothek.addToMembers(admin);
         Member m1 = MemberGenerator.generateMember(bibliothek.getNextMemberID());
         bibliothek.addToMembers(m1);
         Member m2 = MemberGenerator.generateMember(bibliothek.getNextMemberID());
@@ -42,7 +44,8 @@ public class BibliothekMain {
         bibliothek.addToMembers(m3);
 
 
-        BibliothekConsole repl = new BibliothekConsole();
+
+        BibliothekConsole repl = new BibliothekConsole(bibliothek);
         repl.start();
 
 
