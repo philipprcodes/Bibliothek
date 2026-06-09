@@ -1,9 +1,14 @@
 package de.schulung.bibliothek.administration;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import de.schulung.bibliothek.exceptions.NotAMediumException;
 import de.schulung.bibliothek.exceptions.NotAMemberException;
 import de.schulung.bibliothek.media.Medium;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -12,25 +17,27 @@ public class Bibliothek {
     private final Set<Medium> mediums = new HashSet<>();
     private final Set<Member> members = new HashSet<>();
     private final Map<Member, List<Lending>> lendings = new HashMap<>();
-    private int currentMaxId     = 0;
+    private int currentMaxId = 0;
     private int currentMaxMemberId = 0;
 
-    public Bibliothek() {}
+
+    public Bibliothek() {
+    }
 
     public boolean addToStock(Medium medium) {
-       if (!mediums.contains(medium)) {
-           mediums.add(medium);
+        if (!mediums.contains(medium)) {
+            mediums.add(medium);
 
-           this.currentMaxId = Math.max(this.currentMaxId, medium.getId());
-           return true;
-       }
-       return false;
+            this.currentMaxId = Math.max(this.currentMaxId, medium.getId());
+            return true;
+        }
+        return false;
     }
 
 
     public boolean addToMembers(Member member) {
 
-       return members.add(member);
+        return members.add(member);
 
 
     }
@@ -57,7 +64,7 @@ public class Bibliothek {
 
     public void printStock() {
         for (Medium medium : mediums) {
-             System.out.println(medium);
+            System.out.println(medium);
         }
     }
 
@@ -68,7 +75,7 @@ public class Bibliothek {
     }
 
     public void printLendings() {
-        for (Member i : lendings.keySet()){
+        for (Member i : lendings.keySet()) {
             System.out.println(i + " " + lendings.get(i));
         }
     }
@@ -76,6 +83,18 @@ public class Bibliothek {
     public List<Lending> getLendings(Member member) {
         return lendings.get(member);
     }
+
+    public Member findMemberById(String id) {
+        for (Member member : members) {
+            if (member.getId().equals(id)) {
+                return member;
+            }
+        }
+        return null;
+    }
+
+
+
 
 
     public boolean lendMedium (Member member, Medium medium, LocalDate lendingDate) throws NotAMemberException, NotAMediumException {
