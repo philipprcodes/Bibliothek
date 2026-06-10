@@ -2,8 +2,12 @@ package de.schulung.bibliothek;
 
 import de.schulung.bibliothek.administration.Bibliothek;
 import de.schulung.bibliothek.administration.Member;
+import de.schulung.bibliothek.media.Book;
+import de.schulung.bibliothek.media.Medium;
 
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class BibliothekConsole {
 
@@ -11,6 +15,7 @@ public class BibliothekConsole {
     private Scanner input;
     private Bibliothek bibliothek;
     private Member currentMember = null;
+    private Set<Medium> mediums = new HashSet<>();
 
     public BibliothekConsole(Bibliothek bibliothek) {
         this.bibliothek = bibliothek;
@@ -65,9 +70,19 @@ public class BibliothekConsole {
         System.out.println("Goodbye!");
     }
 
-    private void listMediums(){
-        bibliothek.printStock();
-    }
+    private void listMediums() {
+        mediums = bibliothek.getMediums();
+        System.out.println("Mediums:");
+        System.out.println("__________________________________________________");
+        for (Medium medium : mediums) {
+            System.out.println(medium.generateInfoString());
+        }
+        System.out.println("__________________________________________________");
+
+        }
+
+
+
 
     private void login(String userId){
         if(currentMember != null){

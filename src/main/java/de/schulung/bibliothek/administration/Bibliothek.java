@@ -21,6 +21,10 @@ public class Bibliothek {
     private int currentMaxMemberId = 0;
 
 
+    public Set<Medium> getMediums() {
+        return mediums;
+    }
+
     public Bibliothek() {
     }
 
