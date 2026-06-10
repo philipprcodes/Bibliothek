@@ -44,4 +44,18 @@ public abstract class Medium {
     }
 
 
+    public String generateInfoString(){
+        return "Id: " + getId() + "Available:" + isAvailable + ", Type: " + getClass().getSimpleName() + ", Title: " + getTitle() + ", Language: " + getLanguage() + "Year: " + getYear();
+    };
+
+    @Override
+    public String toString() {
+        return "Medium{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", language=" + language +
+                ", year=" + year +
+                ", isAvailable=" + isAvailable +
+                '}';
+    }
 }

@@ -21,6 +21,11 @@ public class DVD extends Medium {
         }
 
 
+        @Override
+        public String generateInfoString(){
+            return super.generateInfoString() + "Director: " + director + ", Length: " + length;
+        }
+
     @Override
     public String toString() {
         return "DVD{" +

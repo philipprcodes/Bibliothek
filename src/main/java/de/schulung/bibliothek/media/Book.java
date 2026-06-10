@@ -28,6 +28,12 @@ public class Book extends Medium {
 
 
     @Override
+    public String generateInfoString() {
+        return super.generateInfoString() + ",Author " + author + ", ISBN: " + isbn + ", Pages: " + pages;
+     }
+
+
+    @Override
     public String toString() {
         return "Book{" +
                 "id=" + id +
